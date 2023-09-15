@@ -1,25 +1,24 @@
-pipeline {
-    agent any
-    tools {
-        "Gradle 8.3"
+pipeline { 
+  agent any
+  tools { 
+    gradle "Gradle 8.3"
+  }
+  stages { 
+    stage('clone repository') {
+      steps { 
+        git 'hhttps://github.com/alphaWomanMuthonks/java-todo.git'
+      }
     }
-    stages{
-        stage('clone repository'){
-            steps{
-                git 'https://github.com/alphaWomanMuthonks/java-todo.git'
-            }
-        }
-        stage('Build the project'){
-            steps{
-                sh 'gradle build'
-            }
-        }
-        stage('Tests'){
-            steps{
-                sh 'gradle test'
-            }
-        }
+    stage('Build the project') {
+      steps { 
+        sh 'gradle build'
+      }
     }
-}
-      
+    stage('Tests') {
+      steps { 
+        sh 'gradle test'
+      }
+    }
+  }
+}    
     
